@@ -1,3 +1,14 @@
+import { createClient } from '@supabase/supabase-js';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+var admin = require("firebase-admin");
+var serviceAccount = require("../../../calhacks_firebase.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+const db = admin.firestore(); // Initialize the Firestore instance
+
 const promptChat = async () => {
   const apiKey = process.env.OPENAI_API_KEY;
   const model = "gpt-3.5-turbo";
@@ -40,8 +51,24 @@ export default async function handler(req, res) {
   console.log('body', body)
 
   if (method === "POST") {
+    const { name, biome, difficulty } = req.body;
     let data = await promptChat();
-    console.log('data', data)
-    res.status(200).json({ data : data});
+    console.log('data', data);
+
+    const docRef = db.collection('initValues').doc(); // Create a new document reference
+    const docData = {
+      name: name,
+      biome: biome,
+      difficulty: difficulty
+    };
+    await docRef.set(docData); // Set the data in the document
+
+    const snapshot = await db.collection('initValues').get(); // Fetch the data from the collection
+    snapshot.forEach(doc => {
+      console.log('Document ID:', doc.id);
+      console.log('Document data:', doc.data());
+    });
+
+    res.status(200).json({ data: data });
   }
 }
