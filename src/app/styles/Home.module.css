@@ -1,0 +1,9 @@
+.homePage {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+}
+
+.standardButton {
+  border: 1px solid black;
+}
