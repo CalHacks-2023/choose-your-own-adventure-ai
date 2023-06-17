@@ -1,9 +1,14 @@
-.homePage {
+/* .homePage {
   display: flex;
   justify-content: center;
-  vertical-align: center;
 }
 
-.standardButton {
-  border: 1px solid black;
+.standardbutton {
+  @apply bg-deep-forest-green hover:bg-moss-green text-white font-bold py-3 px-6 rounded-full shadow-lg;
 }
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
