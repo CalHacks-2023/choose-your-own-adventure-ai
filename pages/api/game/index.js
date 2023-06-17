@@ -1,7 +1,9 @@
-const promptChat = async () => {
+const promptChat = async (messageHistory) => {
   const apiKey = process.env.OPENAI_API_KEY;
   const model = "gpt-3.5-turbo";
   const maxTokens = 200;
+  // console.log('messageHistory', messageHistory)
+  let messages = messageHistory
   let finalPrompt = `Can you give me an intro to a choose your own adventure game?`;
   const apiUrl = `https://api.openai.com/v1/chat/completions`;
   const headers = {
@@ -13,13 +15,15 @@ const promptChat = async () => {
       method: "POST",
       headers,
       body: JSON.stringify({
-        prompt: finalPrompt,
+        model: model,
+        messages: messages,
         max_tokens: maxTokens,
       }),
     });
     if (response.ok) {
       const responseData = await response.json();
-      return responseData.choices[0].text.replace(/\\/g, '');
+      // console.log('responseData', responseData.choices[0].message.content)
+      return responseData.choices[0].message.content//.replace(/\\/g, '');
     }
   } catch (error) {
     console.log('error', error);
@@ -37,11 +41,11 @@ const promptChat = async () => {
 export default async function handler(req, res) {
   let method = req.method;
   let body = JSON.parse(req.body);
-  console.log('body', body)
+  // console.log('body', body)
+  let messageHistory = body.messageHistory;
 
   if (method === "POST") {
-    let data = await promptChat();
-    console.log('data', data)
+    let data = await promptChat(messageHistory);
     res.status(200).json({ data : data});
   }
 }
