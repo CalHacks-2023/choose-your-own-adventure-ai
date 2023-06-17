@@ -11,7 +11,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-deep-forest-green text-white py-4 px-6 flex items-center justify-between">
+    <div className="bg-deep-forest-green text-white py-4 px-6 flex items-center justify-between">
       <>
         <Link href="/">
           <button>
@@ -54,6 +54,6 @@ export default function Header() {
           </ul>
         )}
       </>
-    </header>
+    </div>
   );
 }
