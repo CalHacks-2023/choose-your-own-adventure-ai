@@ -16,6 +16,8 @@ export default function Adventure() {
     },
   ]);
   const [characterName, setCharacterName] = useState(searchParams.get('name'));
+  const [biome, setBiome] = useState(searchParams.get('biome'));
+  const [difficulty, setDifficulty] = useState(searchParams.get('difficulty'));
   const [chatLoading, setChatLoading] = useState(true);
 
   const submitHandler = async (e) => {
@@ -68,7 +70,7 @@ export default function Adventure() {
                   key={index}
                   className="flex justify-center m-5 sm:text-sm md:text-lg font-bold"
                 >
-                  {message.role === 'system' ? '' : 'You: '}
+                  {message.role === 'system' ? '' : characterName + ': '}
                   {message.content}
                 </div>
               );
@@ -96,11 +98,15 @@ export default function Adventure() {
         />
         <button
           className="bg-deep-forest-green hover:bg-moss-green text-white text-sm font-bold rounded h-1/3 p-2"
-          onSubmit={submitHandler}
+          onClick={submitHandler}
+          disabled={chatLoading}
         >
           Submit
         </button>
       </div>
+      {/* <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+        <div className="bg-blue-600 text-xs font-medium  text-blue-100 text-center p-0.5 leading-none rounded-full"> 45%</div>
+      </div> */}
     </main>
   );
 }
