@@ -34,6 +34,17 @@ export default function Adventure() {
 
   const scrollableDivRef = useRef(null);
 
+  const configureBackground = () => {
+    //bg-[url('/homePage.png')]
+    if (biome === 'Mountains') {
+      return "url('/Mountains.png')";
+    } else if (biome === 'Desert') {
+      return "url('/Desert.png')";
+    } else {
+      return "url('/homePage.png')";
+    }
+  };
+
   useEffect(() => {
     scrollableDivRef.current.scrollTop = scrollableDivRef.current.scrollHeight;
   }, [mostRecentChat]);
@@ -55,13 +66,22 @@ export default function Adventure() {
     setMostRecentChat(response.data);
     setChatLoading(false);
   }
-
+  console.log('This is biome: ', biome);
+  console.log('Is biome true?: ', biome === 'Desert');
   return (
-    <main>
+    <main
+      className={`${
+        biome === 'Desert'
+          ? "bg-[url('/Desert.png')]"
+          : biome === 'Mountains'
+          ? "bg-[url('/Mountains.png')]"
+          : "bg-[url('/homePage.png')]"
+      } bg-cover bg-center items-center h-screen w-screen`}
+    >
       <Header />
       <div className="flex justify-center">
         <div
-          className="m-5 p-2 border border-gray-300 rounded-md h-[50vh] overflow-y-scroll sm:w-3/4 sm:flex md:w-2/3 md:flex-col"
+          className="m-5 p-2 bg-slate-100 bg-opacity-80 border border-gray-300 rounded-md h-[70vh] overflow-y-scroll sm:w-3/4 sm:flex md:w-2/3 md:flex-col"
           ref={scrollableDivRef}
         >
           {messageHistory
@@ -87,7 +107,7 @@ export default function Adventure() {
       <div className="flex justify-center">
         {chatLoading ? (
           <div
-            className="animate-spin w-8 h-8 border-[3px] border-current border-t-transparent text-deep-forest-green rounded-full"
+            className="animate-spin w-8 h-8 border-[3px] border-current border-t-transparent text-slate-100 rounded-full"
             role="status"
             aria-label="loading"
           />
@@ -97,7 +117,7 @@ export default function Adventure() {
       </div>
       <div className="flex justify-center items-center">
         <input
-          className="flex justify-center align-bottom m-2 text-lg font-bold border-2 sm:w-3/4 md:w-1/3"
+          className="flex bg-slate-100 justify-center align-bottom m-2 text-lg font-bold border-2 sm:w-3/4 md:w-1/3 pl-2"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           type="text"
