@@ -1,7 +1,7 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,13 +15,13 @@ export default function Header() {
       <>
         <Link href="/">
           <button>
-            <Image
+            {/* <Image
               height={50}
               width={50}
               src="/logo.png"
               alt="Adventure Game Logo"
               className="w-10 h-10"
-            />
+            /> */}
           </button>
         </Link>
       </>
