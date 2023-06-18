@@ -16,9 +16,12 @@ export default function Adventure() {
     },
   ]);
   const [characterName, setCharacterName] = useState(searchParams.get('name'));
+  const [chatLoading, setChatLoading] = useState(true);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setUserInput('');
+    setChatLoading(true);
     setMessageHistory([
       ...messageHistory,
       { role: 'system', content: mostRecentChat },
@@ -30,7 +33,6 @@ export default function Adventure() {
 
   useEffect(() => {
     scrollableDivRef.current.scrollTop = scrollableDivRef.current.scrollHeight;
-    console.log('Inside useEffect');
   }, [mostRecentChat]);
 
   useEffect(() => {
@@ -48,13 +50,14 @@ export default function Adventure() {
     });
     const response = await data.json();
     setMostRecentChat(response.data);
+    setChatLoading(false);
   }
 
   return (
     <main>
       <div className="flex justify-center">
         <div
-          className="flex flex-col m-5 p-2 border border-gray-300 rounded-md h-[60vh] w-2/3 overflow-scroll"
+          className="m-5 p-2 border border-gray-300 rounded-md h-[50vh] overflow-y-scroll sm:w-3/4 sm:flex md:w-2/3 md:flex-col"
           ref={scrollableDivRef}
         >
           {messageHistory
@@ -63,37 +66,40 @@ export default function Adventure() {
               return (
                 <div
                   key={index}
-                  className="flex justify-center m-5 text-sm font-bold"
+                  className="flex justify-center m-5 sm:text-sm md:text-lg font-bold"
                 >
                   {message.role === 'system' ? '' : 'You: '}
                   {message.content}
                 </div>
               );
             })}
-          {mostRecentChat && (
-            <p className="flex justify-center m-5 text-sm font-bold">
+          {mostRecentChat && !chatLoading && (
+            <p className="flex justify-center m-5 sm:text-sm md:text-lg font-bold">
               {mostRecentChat}
             </p>
           )}
         </div>
       </div>
+      <div className="flex justify-center">
+        { chatLoading
+          ? <div className="animate-spin w-8 h-8 border-[3px] border-current border-t-transparent text-deep-forest-green rounded-full" role="status" aria-label="loading" />
+          : <div className="w-8 h-8" /> }
+      </div>
       <div className="flex justify-center items-center">
-        <form className="flex w-1/2 items-center" onSubmit={submitHandler}>
-          <input
-            className="flex justify-center align-bottom m-5 text-4xl font-bold border-2 w-2/3"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            type="text"
-            style={{ width: '60vw' }}
-            placeholder="Whack Goblin"
-          />
-          <button
-            className="bg-deep-forest-green hover:bg-moss-green text-white font-bold rounded h-1/2 p-2"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
+        <input
+          className="flex justify-center align-bottom m-2 text-lg font-bold border-2 sm:w-3/4 md:w-1/3"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          type="text"
+          placeholder="Whack Goblin"
+          disabled={chatLoading}
+        />
+        <button
+          className="bg-deep-forest-green hover:bg-moss-green text-white text-sm font-bold rounded h-1/3 p-2"
+          onSubmit={submitHandler}
+        >
+          Submit
+        </button>
       </div>
     </main>
   );
