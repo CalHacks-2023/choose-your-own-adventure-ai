@@ -9,7 +9,6 @@ export default function Header() {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   return (
     <div className="bg-deep-forest-green text-white py-4 px-6 flex items-center justify-between">
       <>
