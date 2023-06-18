@@ -73,7 +73,7 @@ export default function Adventure() {
           ? "bg-[url('/Desert.png')]"
           : biome === 'Mountains'
           ? "bg-[url('/Mountains.png')]"
-          : "bg-[url('/homePage.png')]"
+          : "bg-[url('/Forest.png')]"
       } bg-cover bg-center items-center h-screen w-screen`}
     >
       <Header />
@@ -85,26 +85,23 @@ export default function Adventure() {
           {messageHistory
             .slice(1, messageHistory.length)
             .map((message, index) => {
-              return message.role === 'system'
-                ? (
-                  <div
-                    key={index}
-                    className="flex justify-center font-medieval m-5 sm:text-sm md:text-lg"
-                  >
-                    {message.role === 'system' ? '' : characterName + ': '}
-                    {message.content}
-                  </div>
-                ) :
-                (
-                  <div
-                    key={index}
-                    className="flex justify-center m-5 sm:text-sm md:text-lg font-bold"
-                  >
-                    {message.role === 'system' ? '' : characterName + ': '}
-                    {message.content}
-                  </div>
-                )
-                ;
+              return message.role === 'system' ? (
+                <div
+                  key={index}
+                  className="flex justify-center font-medieval m-5 sm:text-sm md:text-lg"
+                >
+                  {message.role === 'system' ? '' : characterName + ': '}
+                  {message.content}
+                </div>
+              ) : (
+                <div
+                  key={index}
+                  className="flex justify-center m-5 sm:text-sm md:text-lg font-bold"
+                >
+                  {message.role === 'system' ? '' : characterName + ': '}
+                  {message.content}
+                </div>
+              );
             })}
           {mostRecentChat && !chatLoading && (
             <p className="flex justify-center m-5 sm:text-sm md:text-lg">

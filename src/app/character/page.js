@@ -4,52 +4,55 @@ import Link from 'next/link';
 import Dropdown from '../components/dropdown';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import Header from '../components/Header';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Character() {
-
   const [characterName, setCharacterName] = useState('');
   const [biome, setBiome] = useState('Desert');
   const [difficulty, setDifficulty] = useState('Easy');
   const [disabledLink, setDisabledLink] = useState(true);
-  const [gameType , setGameType] = useState('text');
+  const [gameType, setGameType] = useState('text');
   const [checked, setChecked] = useState(true);
 
-  const notify = () => toast.warn('Character Name Required', {
-    position: "top-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  const notify = () =>
+    toast.warn('Character Name Required', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
     });
 
-    useEffect(() => {
-      if (characterName === '') {
-        setDisabledLink(true);
-        return;
-      }
-      setDisabledLink(false);
-    }, [characterName])
+  useEffect(() => {
+    if (characterName === '') {
+      setDisabledLink(true);
+      return;
+    }
+    setDisabledLink(false);
+  }, [characterName]);
 
-    const handleChange = () => {
-      setChecked(!checked);
-    };
+  const handleChange = () => {
+    setChecked(!checked);
+  };
 
-    useEffect(() => {
-      if (checked) {
-        setGameType('emotions');
-      } else {
-        setGameType('game');
-      }
-    }, [checked])
+  useEffect(() => {
+    if (checked) {
+      setGameType('emotions');
+    } else {
+      setGameType('game');
+    }
+  }, [checked]);
 
   return (
     <main>
-      <h1 className="text-center mt-5 text-2xl font-bold">Choose Your Own Adventure AI</h1>
+      <h1 className="text-center mt-5 text-2xl font-bold">
+        Choose Your Own Adventure AI
+      </h1>
       <div className="flex flex-col items-center mt-5">
         <label className="text-center font-bold">Character Name:</label>
         <input
@@ -60,8 +63,16 @@ export default function Character() {
           placeholder="Bob The Builder"
         />
       </div>
-      <Dropdown title="Biome" options={['Desert', 'Forest', 'Mountains']} handleSelect={setBiome} />
-      <Dropdown title="Difficulty" options={['Easy', 'Medium', 'Hard']} handleSelect={setDifficulty} />
+      <Dropdown
+        title="Biome"
+        options={['Desert', 'Forest', 'Mountains']}
+        handleSelect={setBiome}
+      />
+      <Dropdown
+        title="Difficulty"
+        options={['Easy', 'Medium', 'Hard']}
+        handleSelect={setDifficulty}
+      />
       <div className="flex flex-col items-center mt-5">
         <label htmlFor="toggle" className="flex items-center cursor-pointer">
           <div className="ml-3 text-gray-700 font-medium">Text-Based </div>
@@ -76,10 +87,14 @@ export default function Character() {
             <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
             <div
               className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
-              style={{ transform: checked ? 'translateX(100%)' : 'translateX(0)' }}
+              style={{
+                transform: checked ? 'translateX(100%)' : 'translateX(0)',
+              }}
             ></div>
           </div>
-          <div className="ml-3 text-gray-700 font-medium">Play with your Emotions</div>
+          <div className="ml-3 text-gray-700 font-medium">
+            Play with your Emotions
+          </div>
         </label>
       </div>
       <div className="flex justify-center mt-5">
@@ -90,10 +105,17 @@ export default function Character() {
           >
             Start Game!
           </button>
-        ) :
-        (
+        ) : (
           <Link
-            href={{ pathname: `/${gameType}`, query: { name: characterName, biome: biome, difficulty: difficulty, gametype: gameType } }}
+            href={{
+              pathname: '/game',
+              query: {
+                name: characterName,
+                biome: biome,
+                difficulty: difficulty,
+                gametype: gameType,
+              },
+            }}
             className="flex justify-center"
           >
             <button className="bg-deep-forest-green hover:bg-moss-green text-white font-bold py-2 px-4 rounded">
@@ -112,9 +134,8 @@ export default function Character() {
           draggable
           pauseOnHover
           theme="light"
-          />
+        />
       </div>
     </main>
-
-  )
+  );
 }

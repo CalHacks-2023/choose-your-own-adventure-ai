@@ -15,8 +15,9 @@ module.exports = {
         'moss-green': '#4C6A47',
       },
       fontFamily: {
-        'cloister': ['Cloister Black', 'sans-serif'],
-        'medieval': ['Medieval', 'sans-serif'],
+        cinzel: ['Cinzel Decorative', 'ui-serif'],
+        cloister: ['Cloister Black', 'sans-serif'],
+        medieval: ['Medieval', 'sans-serif'],
       },
     },
   },
