@@ -9,7 +9,6 @@ export default function Header() {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   return (
     <div className="bg-deep-forest-green text-white py-4 px-6 flex items-center justify-between">
       <>
@@ -45,7 +44,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/charatcer">
+              <Link href="/character">
                 <button className="block py-1 hover:underline">
                   Character Creation
                 </button>

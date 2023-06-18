@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Header from '../components/header';
 
 export default function Adventure() {
   const searchParams = useSearchParams();
@@ -55,6 +56,7 @@ export default function Adventure() {
 
   return (
     <main>
+      <Header />
       <div className="flex justify-center">
         <div
           className="m-5 p-2 border border-gray-300 rounded-md h-[50vh] overflow-y-scroll sm:w-3/4 sm:flex md:w-2/3 md:flex-col"
@@ -81,9 +83,15 @@ export default function Adventure() {
         </div>
       </div>
       <div className="flex justify-center">
-        { chatLoading
-          ? <div className="animate-spin w-8 h-8 border-[3px] border-current border-t-transparent text-deep-forest-green rounded-full" role="status" aria-label="loading" />
-          : <div className="w-8 h-8" /> }
+        {chatLoading ? (
+          <div
+            className="animate-spin w-8 h-8 border-[3px] border-current border-t-transparent text-deep-forest-green rounded-full"
+            role="status"
+            aria-label="loading"
+          />
+        ) : (
+          <div className="w-8 h-8" />
+        )}
       </div>
       <div className="flex justify-center items-center">
         <input

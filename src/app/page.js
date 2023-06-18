@@ -1,9 +1,9 @@
-import Link from "next/link";
-import styles from "./styles/Home.module.css";
+import Link from 'next/link';
+import styles from './styles/Home.module.css';
 
 export default function Home() {
   return (
-    <main className="flex justify-center items-center h-screen w-screen">
+    <main className="flex justify-center bg-[url('/homePage.png')] bg-cover bg-center items-center h-screen w-screen">
       <div className="bg-gray-200 p-10 rounded-lg">
         <h1 className="text-4xl font-bold text-center">Adventure AI</h1>
         <p className="text-l text-center">Choose your own adventure</p>
