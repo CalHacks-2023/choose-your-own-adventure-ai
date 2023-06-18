@@ -1,18 +1,14 @@
-import "./styles/globals.css";
-import Header from "./components/header";
+import './styles/globals.css';
 
 export const metadata = {
-  title: "Choose Your Own Adventure AI",
-  description: "A choose your own adventure game powered by AI",
+  title: 'Choose Your Own Adventure AI',
+  description: 'A choose your own adventure game powered by AI',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
