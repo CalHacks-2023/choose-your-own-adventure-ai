@@ -16,6 +16,8 @@ module.exports = {
       },
       fontFamily: {
         cinzel: ['Cinzel Decorative', 'ui-serif'],
+        cloister: ['Cloister Black', 'sans-serif'],
+        medieval: ['Medieval', 'sans-serif'],
       },
     },
   },
