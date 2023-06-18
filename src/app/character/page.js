@@ -42,7 +42,7 @@ export default function Character() {
 
   useEffect(() => {
     if (checked) {
-      setGameType('emotions');
+      setGameType('game'); // changed from emotions
     } else {
       setGameType('game');
     }
