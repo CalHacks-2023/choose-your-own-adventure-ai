@@ -16,10 +16,12 @@ export default function Adventure() {
     },
   ]);
   const [characterName, setCharacterName] = useState(searchParams.get("name"));
-  const [chatLoading, setChatLoading] = useState(false);
+  const [chatLoading, setChatLoading] = useState(true);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setUserInput('');
+    setChatLoading(true);
     setMessageHistory([
       ...messageHistory,
       { role: "system", content: mostRecentChat },
@@ -42,6 +44,7 @@ export default function Adventure() {
     });
     const response = await data.json();
     setMostRecentChat(response.data);
+    setChatLoading(false);
   }
 
   return (
@@ -61,7 +64,7 @@ export default function Adventure() {
                 </div>
               );
             })}
-          {mostRecentChat && (
+          {mostRecentChat && !chatLoading && (
             <p className="flex justify-center m-5 text-sm font-bold">
               {mostRecentChat}
             </p>
@@ -76,11 +79,13 @@ export default function Adventure() {
           onChange={(e) => setUserInput(e.target.value)}
           type="text"
           placeholder="Whack Goblin"
+          disabled={chatLoading}
         />
-        { chatLoading ? <div className="animate-spin w-12 h-12 border-[3px] border-current border-t-transparent text-blue-600 rounded-full" role="status" aria-label="loading" /> : null }
+        { chatLoading ? <div className="animate-spin w-12 h-12 border-[3px] border-current border-t-transparent text-deep-forest-green rounded-full" role="status" aria-label="loading" /> : null }
         <button
           className="bg-blue-500 m-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit">
+          type="submit"
+        >
           Submit
         </button>
       </form>
