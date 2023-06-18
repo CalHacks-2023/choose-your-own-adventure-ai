@@ -45,7 +45,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/charatcer">
+              <Link href="/character">
                 <button className="block py-1 hover:underline">
                   Character Creation
                 </button>
