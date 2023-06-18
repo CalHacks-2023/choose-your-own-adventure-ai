@@ -16,6 +16,7 @@ export default function Adventure() {
     },
   ]);
   const [characterName, setCharacterName] = useState(searchParams.get("name"));
+  const [chatLoading, setChatLoading] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -76,10 +77,10 @@ export default function Adventure() {
           type="text"
           placeholder="Whack Goblin"
         />
+        { chatLoading ? <div className="animate-spin w-12 h-12 border-[3px] border-current border-t-transparent text-blue-600 rounded-full" role="status" aria-label="loading" /> : null }
         <button
           className="bg-blue-500 m-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
+          type="submit">
           Submit
         </button>
       </form>
