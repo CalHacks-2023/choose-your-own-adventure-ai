@@ -14,6 +14,9 @@ module.exports = {
         'deep-forest-green': '#1B4332',
         'moss-green': '#4C6A47',
       },
+      fontFamily: {
+        cinzel: ['Cinzel Decorative', 'ui-serif'],
+      },
     },
   },
   plugins: [],

@@ -10,23 +10,22 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <div className="bg-deep-forest-green text-white py-4 px-6 flex items-center justify-between">
+    <div className="bg-deep-forest-green text-white -py-2 flex items-center justify-between">
       <>
         <Link href="/">
-          <button>
-            {/* <Image
+          <button className="mx-4 my-2 focus:outline-none">
+            <Image
               height={50}
               width={50}
-              src="/logo.png"
+              src="/Logo.png"
               alt="Adventure Game Logo"
-              className="w-10 h-10"
-            /> */}
+            />
           </button>
         </Link>
       </>
       <>
         <button
-          className="text-white font-medium hover:underline focus:outline-none"
+          className="text-white mx-4 font-medium hover:underline focus:outline-none"
           onClick={handleMenuToggle}
         >
           Menu
