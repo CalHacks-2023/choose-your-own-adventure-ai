@@ -41,7 +41,6 @@ const promptChat = async (messageHistory) => {
 export default async function handler(req, res) {
   let method = req.method;
   let body = JSON.parse(req.body);
-  // console.log('body', body)
   let messageHistory = body.messageHistory;
 
   if (method === "POST") {

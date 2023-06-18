@@ -66,6 +66,37 @@ export default function Adventure() {
     setMostRecentChat(response.data);
     setChatLoading(false);
   }
+
+  const sendInitialData = async () => {
+    console.log('sendInitialData')
+    const data = await fetch('/api/emotions', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: characterName,
+        biome: biome,
+        difficulty: difficulty
+      }),
+    });
+    console.log('data', data)
+  };
+
+  const getInitialRespose = async () => {
+    console.log('getInitialRespose')
+    const data = await fetch('/api/emotions', {
+      method: 'GET',
+    });
+    console.log('data', data)
+  };
+
+  const inputExpressions = async () => {
+    console.log('inputExpressions')
+    const data = await fetch('/api/expression', {
+      method: 'GET',
+    });
+    console.log('data', data)
+  };
+
+
   return (
     <main
       className={`${
@@ -85,29 +116,19 @@ export default function Adventure() {
           {messageHistory
             .slice(1, messageHistory.length)
             .map((message, index) => {
-              return message.role === 'system'
-                ? (
-                  <div
-                    key={index}
-                    className="flex justify-center font-medieval m-5 sm:text-sm md:text-lg"
-                  >
-                    {message.role === 'system' ? '' : characterName + ': '}
-                    {message.content}
-                  </div>
-                ) :
-                (
-                  <div
-                    key={index}
-                    className="flex justify-center m-5 sm:text-sm md:text-lg font-bold"
-                  >
-                    {message.role === 'system' ? '' : characterName + ': '}
-                    {message.content}
-                  </div>
-                )
-                ;
+              return (
+                <div
+                  key={index}
+                  className="flex justify-center m-5 sm:text-sm md:text-lg font-bold"
+                >
+                  {message.role === 'system' ? '' : characterName + ': '}
+                  {message.content}
+                </div>
+              );
             })}
+            <h1 className="text-4xl font-bold text-center">Emotions PAGE</h1>
           {mostRecentChat && !chatLoading && (
-            <p className="flex justify-center m-5 sm:text-sm md:text-lg">
+            <p className="flex justify-center m-5 sm:text-sm md:text-lg font-bold">
               {mostRecentChat}
             </p>
           )}
@@ -125,20 +146,26 @@ export default function Adventure() {
         )}
       </div>
       <div className="flex justify-center items-center">
-        <input
-          className="flex bg-slate-100 justify-center align-bottom m-2 text-lg font-bold border-2 sm:w-3/4 md:w-1/3 pl-2"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          type="text"
-          placeholder="Whack Goblin"
-          disabled={chatLoading}
-        />
         <button
           className="bg-deep-forest-green hover:bg-moss-green text-white text-sm font-bold rounded h-1/3 p-2"
-          onClick={submitHandler}
-          disabled={chatLoading}
+          onClick={sendInitialData}
+          // disabled={chatLoading}
         >
-          Submit
+          Initial Request
+        </button>
+        <button
+          className="bg-deep-forest-green m-3 hover:bg-moss-green text-white text-sm font-bold rounded h-1/3 p-2"
+          onClick={getInitialRespose}
+          // disabled={chatLoading}
+        >
+          First Input
+        </button>
+        <button
+          className="bg-deep-forest-green hover:bg-moss-green text-white text-sm font-bold rounded h-1/3 p-2"
+          onClick={inputExpressions}
+          // disabled={chatLoading}
+        >
+          Get New FACE EMOTION
         </button>
       </div>
       {/* <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">

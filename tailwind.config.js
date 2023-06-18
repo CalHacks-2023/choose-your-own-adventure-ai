@@ -14,6 +14,10 @@ module.exports = {
         'deep-forest-green': '#1B4332',
         'moss-green': '#4C6A47',
       },
+      fontFamily: {
+        'cloister': ['Cloister Black', 'sans-serif'],
+        'medieval': ['Medieval', 'sans-serif'],
+      },
     },
   },
   plugins: [],

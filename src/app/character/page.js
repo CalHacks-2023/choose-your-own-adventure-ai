@@ -40,10 +40,10 @@ export default function Character() {
     };
 
     useEffect(() => {
-      if (!checked) {
-        setGameType('text');
-      } else {
+      if (checked) {
         setGameType('emotions');
+      } else {
+        setGameType('game');
       }
     }, [checked])
 
@@ -93,7 +93,7 @@ export default function Character() {
         ) :
         (
           <Link
-            href={{ pathname: "/game", query: { name: characterName, biome: biome, difficulty: difficulty, gametype: gameType } }}
+            href={{ pathname: `/${gameType}`, query: { name: characterName, biome: biome, difficulty: difficulty, gametype: gameType } }}
             className="flex justify-center"
           >
             <button className="bg-deep-forest-green hover:bg-moss-green text-white font-bold py-2 px-4 rounded">
