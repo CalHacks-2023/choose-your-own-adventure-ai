@@ -99,13 +99,14 @@ export default function Adventure() {
         <button
           className="bg-deep-forest-green hover:bg-moss-green text-white text-sm font-bold rounded h-1/3 p-2"
           onClick={submitHandler}
+          disabled={chatLoading}
         >
           Submit
         </button>
       </div>
-      <div className="w-80% bg-gray-200 rounded-full dark:bg-gray-700">
-        <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"> 45%</div>
-      </div>
+      {/* <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+        <div className="bg-blue-600 text-xs font-medium  text-blue-100 text-center p-0.5 leading-none rounded-full"> 45%</div>
+      </div> */}
     </main>
   );
 }
