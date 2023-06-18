@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold text-center">Adventure AI</h1>
         <p className="text-l text-center">Choose your own adventure</p>
         <div className="flex flex-col items-center">
-          <Link href="/game">
+          <Link href="/character">
             <button className="bg-deep-forest-green hover:bg-moss-green text-white font-bold py-2 px-4 rounded my-1">
               Play Now!
             </button>
