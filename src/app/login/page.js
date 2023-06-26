@@ -1,9 +1,6 @@
-import Header from '../components/header';
-
 export default function Login() {
   return (
     <>
-      <Header />
       <div className="flex justify-center items-center h-screen">
         <div className="bg-gray-200 p-6 rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>

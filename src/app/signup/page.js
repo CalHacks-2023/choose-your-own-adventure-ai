@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import Header from '../components/header';
+// import Header from '../components/header';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ export default function Signup() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="flex justify-center items-center h-screen">
         <div className="bg-gray-200 p-6 rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-4">Sign Up</h2>

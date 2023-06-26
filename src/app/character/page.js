@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Dropdown from '../components/dropdown';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import Header from '../components/Header';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -50,7 +49,6 @@ export default function Character() {
 
   return (
     <>
-      {/* <Header /> */}
       <main className="flex justify-center bg-[url('/homePage.png')] items-center bg-cover h-screen w-screen">
         <div className="bg-gray-200 p-10 rounded-lg">
           <h1

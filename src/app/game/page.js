@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Header from '../components/header';
+// import Header from '../components/header';
 
 export default function Adventure() {
   const searchParams = useSearchParams();
@@ -76,7 +76,7 @@ export default function Adventure() {
           : "bg-[url('/Forest.png')]"
       } bg-cover bg-center items-center h-screen w-screen`}
     >
-      <Header />
+      {/* <Header /> */}
       <div className="flex justify-center">
         <div
           className="m-5 p-2 bg-slate-100 bg-opacity-80 border border-gray-300 rounded-md h-[70vh] overflow-y-scroll sm:w-3/4 sm:flex md:w-2/3 md:flex-col"
