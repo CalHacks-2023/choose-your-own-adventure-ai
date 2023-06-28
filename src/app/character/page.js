@@ -84,7 +84,7 @@ export default function Character() {
             options={['Easy', 'Medium', 'Hard']}
             handleSelect={setDifficulty}
           />
-          <div className="flex flex-col items-center mt-5">
+          {/* <div className="flex flex-col items-center mt-5">
             <label
               htmlFor="toggle"
               className="flex items-center cursor-pointer"
@@ -112,7 +112,7 @@ export default function Character() {
                 Play with Emotions
               </div>
             </label>
-          </div>
+          </div> */}
           <div className="flex justify-center mt-5">
             {disabledLink ? (
               <button
