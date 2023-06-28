@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 export default function Adventure() {
   const searchParams = useSearchParams();
